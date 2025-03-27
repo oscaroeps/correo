@@ -1,0 +1,47 @@
+# ==========================
+# Maven
+# ==========================
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Wrapper de Maven
+mvnw
+mvnw.cmd
+.mvn/
+
+# ==========================
+# Archivos compilados de Java
+# ==========================
+*.class
+*.jar
+*.war
+*.ear
+
+# ==========================
+# Logs
+# ==========================
+*.log
+
+# ==========================
+# Archivos y configuraciones de Eclipse / Spring Tool Suite 4
+# ==========================
+.classpath
+.project
+.settings/
+
+# Archivo de fábrica (si se genera para procesadores de anotaciones)
+.factorypath
+
+# ==========================
+# Archivos temporales y de sistema
+# ==========================
+*.tmp
+*.swp
+*~
+
+.DS_Store
+Thumbs.db
