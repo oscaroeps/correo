@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.correo2.entity.Correo;
-import com.correo2.entity.TipoCorreo;
 import com.correo2.service.CorreoService;
+import com.correo2.service.TipoCorreoService;
 
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -15,9 +15,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 
 import java.io.InputStream;
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -31,6 +29,8 @@ public class HomeController {
     private CorreoService correoService;
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    private TipoCorreoService tipoCorreoService;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -42,18 +42,10 @@ public class HomeController {
     public String nuevoRegistro(Model model) {
         model.addAttribute("accion", "Nuevo");
         model.addAttribute("correo", new Correo());
-        model.addAttribute("listaTipos", obtenerListaTipos());
+        model.addAttribute("listaTipos", tipoCorreoService.obtenerTodos());
         return "form";
     }
     
-    private List<TipoCorreo> obtenerListaTipos() {
-        List<TipoCorreo> lista = new ArrayList<>();
-        lista.add(new TipoCorreo(1, "Personal"));
-        lista.add(new TipoCorreo(2, "Laboral"));
-        lista.add(new TipoCorreo(3, "Otro"));
-        return lista;
-    }
-
     @PostMapping("/guardar")
     public String guardarRegistro(@ModelAttribute("correo") Correo correo) {
         correoService.guardar(correo);
@@ -68,7 +60,7 @@ public class HomeController {
         }
         model.addAttribute("accion", "Editar");
         model.addAttribute("correo", correo);
-        model.addAttribute("listaTipos", obtenerListaTipos());
+        model.addAttribute("listaTipos", tipoCorreoService.obtenerTodos());
         return "form";
     }
 

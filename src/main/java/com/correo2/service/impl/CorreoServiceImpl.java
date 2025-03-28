@@ -1,4 +1,4 @@
-package com.correo2.service;
+package com.correo2.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.correo2.entity.Correo;
 import com.correo2.repository.CorreoDAO;
+import com.correo2.service.CorreoService;
 
 @Service
 @Transactional

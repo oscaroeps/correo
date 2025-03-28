@@ -8,29 +8,31 @@ public class TipoCorreo {
 
     @Id
     @Column(name = "N_ID")
-    private int nId;
+    private Integer id;
 
-    @Column(name = "S_TIPOCORREO")
-    private String sTipoCorreo;
+    @Column(name = "S_TIPOCORREO", nullable = false, length = 50)
+    private String nombreTipo;
 
-    public TipoCorreo() {
+    public TipoCorreo() {}
+
+    public TipoCorreo(Integer id, String nombreTipo) {
+        this.id = id;
+        this.nombreTipo = nombreTipo;
     }
 
-    public TipoCorreo(int nId, String sTipoCorreo) {
-        this.nId = nId;
-        this.sTipoCorreo = sTipoCorreo;
+    public Integer getId() {
+        return id;
     }
 
-    public int getnId() {
-        return nId;
+    public void setId(Integer id) {
+        this.id = id;
     }
-    public void setnId(int nId) {
-        this.nId = nId;
+
+    public String getNombreTipo() {
+        return nombreTipo;
     }
-    public String getsTipoCorreo() {
-        return sTipoCorreo;
-    }
-    public void setsTipoCorreo(String sTipoCorreo) {
-        this.sTipoCorreo = sTipoCorreo;
+
+    public void setNombreTipo(String nombreTipo) {
+        this.nombreTipo = nombreTipo;
     }
 }

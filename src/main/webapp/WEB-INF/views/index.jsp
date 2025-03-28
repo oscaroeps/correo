@@ -28,12 +28,12 @@
         <tbody>
           <c:forEach var="correo" items="${listaCorreos}">
             <tr>
-              <td>${correo.sNombre}</td>
-              <td>${correo.sCorreo}</td>
-              <td>${correo.sTipoCorreo}</td>
+              <td>${correo.nombre}</td>
+              <td>${correo.correoElectronico}</td>
+              <td>${correo.tipoCorreo != null ? correo.tipoCorreo.nombreTipo : 'No especificado'}</td>
               <td>
-                <a href="${pageContext.request.contextPath}/editar?id=${correo.nId}" class="btn">Modificar</a>
-                <a href="${pageContext.request.contextPath}/eliminar?id=${correo.nId}" class="btn" onclick="return confirm('¿Está seguro de eliminar este registro?');">Borrar</a>
+                <a href="${pageContext.request.contextPath}/editar?id=${correo.id}" class="btn">Modificar</a>
+                <a href="${pageContext.request.contextPath}/eliminar?id=${correo.id}" class="btn" onclick="return confirm('¿Está seguro de eliminar este registro?');">Borrar</a>
               </td>
             </tr>
           </c:forEach>

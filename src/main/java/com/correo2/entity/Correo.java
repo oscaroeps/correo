@@ -1,76 +1,67 @@
 package com.correo2.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "TC_CORREO")
 public class Correo {
 
     @Id
-    @SequenceGenerator(name = "correo_seq", sequenceName = "TC_CORREO_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "correo_seq")
+    @SequenceGenerator(name = "correo_seq", sequenceName = "TC_CORREO_SEQ", allocationSize = 1)
     @Column(name = "N_ID")
-    private int nId;
+    private Integer id;
 
-    @Column(name = "S_NOMBRE")
-    private String sNombre;
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size(max = 100)
+    @Column(name = "S_NOMBRE", nullable = false)
+    private String nombre;
 
-    @Column(name = "S_CORREO")
-    private String sCorreo;
+    @NotBlank(message = "El correo es obligatorio")
+    @Email(message = "Debe ser un correo válido")
+    @Column(name = "S_CORREO", nullable = false)
+    private String correoElectronico;
 
-    @Column(name = "N_IDTIPOCORREO")
-    private Integer nIdTipoCorreo;
+    @NotNull(message="El tipo de correo es obligatorio")
+    @ManyToOne
+    @JoinColumn(name = "N_IDTIPOCORREO", nullable = false)
+    private TipoCorreo tipoCorreo;
 
-    @Transient
-    private String sTipoCorreo;
+    public Correo() {}
 
-    public Correo() {
+    public Integer getId() {
+        return id;
     }
 
-    public int getnId() {
-        return nId;
+    public void setId(Integer id) {
+        this.id = id;
     }
-    public void setnId(int nId) {
-        this.nId = nId;
+
+    public String getNombre() {
+        return nombre;
     }
-    public String getsNombre() {
-        return sNombre;
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
-    public void setsNombre(String sNombre) {
-        this.sNombre = sNombre;
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
     }
-    public String getsCorreo() {
-        return sCorreo;
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
-    public void setsCorreo(String sCorreo) {
-        this.sCorreo = sCorreo;
+
+    public TipoCorreo getTipoCorreo() {
+        return tipoCorreo;
     }
-    public Integer getnIdTipoCorreo() {
-        return nIdTipoCorreo;
-    }
-    public void setnIdTipoCorreo(Integer nIdTipoCorreo) {
-        this.nIdTipoCorreo = nIdTipoCorreo;
-    }
-    public String getsTipoCorreo() {
-        if (sTipoCorreo == null) {
-            if (nIdTipoCorreo != null) {
-                switch (nIdTipoCorreo) {
-                    case 1:
-                        return "Personal";
-                    case 2:
-                        return "Laboral";
-                    case 3:
-                        return "Otro";
-                    default:
-                        return "Desconocido";
-                }
-            } else {
-                return "No especificado";
-            }
-        }
-        return sTipoCorreo;
-    }
-    public void setsTipoCorreo(String sTipoCorreo) {
-        this.sTipoCorreo = sTipoCorreo;
+
+    public void setTipoCorreo(TipoCorreo tipoCorreo) {
+        this.tipoCorreo = tipoCorreo;
     }
 }
