@@ -12,9 +12,13 @@
       <h1>Listado de Correos</h1>
 
       <div class="actions">
-        <a href="${pageContext.request.contextPath}/nuevo" class="btn">Nuevo Registro</a>
-        <a href="${pageContext.request.contextPath}/reporte" class="btn">Descargar Reporte</a>
-      </div>
+		  <a href="${pageContext.request.contextPath}/nuevo" class="btn">Nuevo Registro</a>
+		  <a href="${pageContext.request.contextPath}/reporte" class="btn">Descargar Reporte</a>
+		  <form action="${pageContext.request.contextPath}/logout" method="post" style="display:inline;">
+		    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		    <button type="submit" class="btn">Cerrar Sesión</button>
+		  </form>
+		</div>
 
       <table class="table">
         <thead>
